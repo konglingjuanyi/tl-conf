@@ -102,8 +102,7 @@
     <b>Version</b> 1.4
 </div>-->
     <strong>Copyright &copy; 2015-${.now?string('yyyy')} &nbsp;
-        <a href="https://github.com/xuxueli/xxl-conf" target="_blank" >github</a>&nbsp;
-        <a href="http://my.oschina.net/xuxueli/blog/734267" target="_blank" >oschina</a>
+        <a href="http://git.rfdoa.cn/cloud/tl-conf" target="_blank" >git</a>&nbsp;
     </strong><!-- All rights reserved. -->
 </footer>
 </#macro>
