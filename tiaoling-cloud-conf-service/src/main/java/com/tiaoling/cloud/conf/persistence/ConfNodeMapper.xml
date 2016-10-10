@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaoling.cloud.conf.persistence.ConfNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaoling.cloud.conf.domain.ConfNode" >
+    <result column="node_group" property="nodeGroup" jdbcType="VARCHAR" />
+    <result column="node_key" property="nodeKey" jdbcType="VARCHAR" />
+    <result column="node_value" property="nodeValue" jdbcType="VARCHAR" />
+    <result column="node_desc" property="nodeDesc" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    node_group, node_key,node_value,node_desc,isdelete
+  </sql>
+  <insert id="insert" parameterType="com.tiaoling.cloud.conf.domain.ConfNode" >
+    insert into tl_conf_node (node_group, node_key, node_value, 
+      node_desc,isdelete)
+    values (#{nodeGroup,jdbcType=VARCHAR}, #{nodeKey,jdbcType=VARCHAR}, #{nodeValue,jdbcType=VARCHAR}, 
+      #{nodeDesc,jdbcType=VARCHAR},#{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaoling.cloud.conf.domain.ConfNode" >
+    insert into tl_conf_node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nodeGroup != null" >
+        node_group,
+      </if>
+      <if test="nodeKey != null" >
+        node_key,
+      </if>
+      <if test="nodeValue != null" >
+        node_value,
+      </if>
+      <if test="nodeDesc != null" >
+        node_desc,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nodeGroup != null" >
+        #{nodeGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeKey != null" >
+        #{nodeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeValue != null" >
+        #{nodeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeDesc != null" >
+        #{nodeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="pageList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM tl_conf_node AS t
+    <trim prefix="WHERE" prefixOverrides="AND | OR" >
+      <if test="nodeGroup != null and nodeGroup != '' ">
+        t.node_group = #{nodeGroup}
+      </if>
+      <if test="nodeKey != null and nodeKey != '' ">
+        AND t.node_key =#{nodeKey}
+      </if>
+    </trim>
+    ORDER BY t.node_key
+    LIMIT #{start}, #{limit}
+  </select>
+
+  <select id="count" parameterType="java.util.Map" resultType="int">
+    SELECT count(1)
+    FROM tl_conf_node AS t
+    <trim prefix="WHERE" prefixOverrides="AND | OR" >
+      <if test="nodeGroup != null and nodeGroup != '' ">
+        t.node_group = #{nodeGroup}
+      </if>
+      <if test="nodeKey != null and nodeKey != '' ">
+        AND t.node_key = #{nodeKey}
+      </if>
+    </trim>
+  </select>
+</mapper>

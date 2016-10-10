@@ -1,0 +1,10 @@
+/.idea
+/tiaoling-cloud.iml
+/tiaoling-cloud-conf-api/target
+/tiaoling-cloud-conf-api/tiaoling-cloud-conf-api.iml
+/tiaoling-cloud-conf-service/target
+/tiaoling-cloud-conf-service/tiaoling-cloud-conf-service.iml
+/tiaoling-cloud-conf-web/target
+/tiaoling-cloud-conf-web/tiaoling-cloud-conf-web.iml
+/tiaoling-cloud-core/target
+/tiaoling-cloud-core/tiaoling-cloud-core.iml

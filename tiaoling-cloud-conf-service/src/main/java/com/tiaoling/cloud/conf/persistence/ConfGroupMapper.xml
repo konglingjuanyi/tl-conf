@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaoling.cloud.conf.persistence.ConfGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaoling.cloud.conf.domain.ConfGroup" >
+    <id column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="group_key" property="groupKey" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    group_key, group_name, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tl_conf_group
+    where group_key = #{groupKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tl_conf_group
+    where group_key = #{groupKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tiaoling.cloud.conf.domain.ConfGroup" >
+    insert into tl_conf_group (group_key,group_name, isdelete)
+    values (#{groupKey,jdbcType=VARCHAR},#{groupName,jdbcType=VARCHAR},  #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaoling.cloud.conf.domain.ConfGroup" >
+    insert into tl_conf_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupKey != null" >
+        group_key,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupKey != null" >
+        #{groupkey,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+          #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaoling.cloud.conf.domain.ConfGroup" >
+    update tl_conf_group
+    <set >
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where group_key = #{groupKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaoling.cloud.conf.domain.ConfGroup" >
+    update tl_conf_group
+    set group_name = #{groupName,jdbcType=VARCHAR},isdelete = #{isdelete,jdbcType=BIT}
+    where group_key = #{groupKey,jdbcType=VARCHAR}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from tl_conf_group
+    where isdelete = 0
+  </select>
+</mapper>
