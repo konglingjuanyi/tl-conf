@@ -62,7 +62,7 @@
 <header class="main-header">
     <a href="${request.contextPath}/" class="logo">
         <span class="logo-mini"><b>TL</b></span>
-        <span class="logo-lg"><b>跳羚分布式配置管理平台</b></span>
+        <span class="logo-lg"><b>跳羚分布式综合管理平台</b></span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">切换导航</span></a>

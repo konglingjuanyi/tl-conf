@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  	<title>跳羚分布式配置管理平台</title>
+  	<title>跳羚分布式综合管理平台</title>
   	<#import "/common/common.ftl" as netCommon>
 	<@netCommon.commonStyle />
 </head>
@@ -28,7 +28,7 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="callout callout-info">
-				<h4>简介：TL-CONF</h4>
+				<h4>简介：TL-MANAGER</h4>
 				<br>
 				<p>
 					<a target="_blank" href="http://git.rfdoa.cn/cloud/tl-conf">git地址</a>&nbsp;&nbsp;&nbsp;&nbsp;
