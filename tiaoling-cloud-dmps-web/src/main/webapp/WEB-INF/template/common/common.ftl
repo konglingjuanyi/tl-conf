@@ -275,7 +275,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="${request.contextPath}/static/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">admin</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -283,8 +283,8 @@
                                 <img src="${request.contextPath}/static/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    admin - Web Developer
+                                    <small>Member since Nov. 2016</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -346,38 +346,38 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-click"><a href="${request.contextPath}/conf"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/group"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/conf/node"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/conf/group"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/conf/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                 </ul>
             </li>
             <li class="treeview nav-click">
                 <a href="#">
-                    <i class="fa fa-th"></i>
+                    <i class="glyphicon glyphicon-scale"></i>
                     <span>调度管理</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-click"><a href="${request.contextPath}/conf"><i class="fa fa-circle-o text-red"></i> 调度管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/group"><i class="fa fa-circle-o text-red"></i> 调度日志</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/group"><i class="fa fa-circle-o text-red"></i> 执行器管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 调度管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 调度日志</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 执行器管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                     </ul>
             </li>
             <li class="treeview nav-click">
                 <a href="#">
-                    <i class="fa fa-th"></i>
+                    <i class="glyphicon glyphicon-th-list"></i>
                     <span>缓存管理</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-click"><a href="${request.contextPath}/conf"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/group"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/cache"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/cache"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/cache/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                 </ul>
             </li>
         </ul>

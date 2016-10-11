@@ -26,9 +26,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/conf")
 public class ConfController {
-    @RequestMapping("")
+    @RequestMapping("/node")
     @PermessionLimit
-    public String index(Model model, String znodeKey){
+    public String nodeIndex(Model model, String znodeKey){
         List<ConfGroup> list = new ArrayList<ConfGroup>();
         String json ="";
         Map<String,Object> params = new HashMap<String,Object>();
@@ -48,10 +48,10 @@ public class ConfController {
         return "conf/conf.index";
     }
 
-    @RequestMapping("/pageList")
+    @RequestMapping("/node/List")
     @ResponseBody
     @PermessionLimit
-    public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,
+    public Map<String, Object> nodeList(@RequestParam(required = false, defaultValue = "0") int start,
                                         @RequestParam(required = false, defaultValue = "10") int length,
                                         String nodeGroup, String nodeKey) {
         String json ="";
@@ -85,10 +85,10 @@ public class ConfController {
      * get
      * @return
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/node/delete")
     @ResponseBody
     @PermessionLimit
-    public ReturnT<String> delete(String nodeGroup, String nodeKey){
+    public ReturnT<String> nodeDelete(String nodeGroup, String nodeKey){
         String json ="";
         int ret =0;
         String message="";
@@ -119,10 +119,10 @@ public class ConfController {
      * create/update
      * @return
      */
-    @RequestMapping("/add")
+    @RequestMapping("/node/add")
     @ResponseBody
     @PermessionLimit
-    public ReturnT<String> add(ConfNode ConfNode)
+    public ReturnT<String> nodeAdd(ConfNode ConfNode)
     {
         String json ="";
         int ret =0;
@@ -156,10 +156,10 @@ public class ConfController {
      * create/update
      * @return
      */
-    @RequestMapping("/update")
+    @RequestMapping("/node/update")
     @ResponseBody
     @PermessionLimit
-    public ReturnT<String> update(ConfNode ConfNode)
+    public ReturnT<String> nodeUpdate(ConfNode ConfNode)
     {
         String json ="";
         int ret =0;
@@ -189,5 +189,135 @@ public class ConfController {
         }
         return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
     }
+    @RequestMapping(value = "/group")
+    public String groupIndex(Model model) {
+        List<ConfGroup> list = new ArrayList<>();
+        String json ="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        String doMethod = CommonPropertiesUtils.get("group_list");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                list=JsonUtils.getListDTO(JsonUtils.getJSONString(map.get("Body")),ConfGroup.class);
+            }
+        }
+        model.addAttribute("list", list);
+        return "group/group.index";
+    }
+    @RequestMapping("/group/add")
+    @ResponseBody
+    public ReturnT<String> groupAdd(ConfGroup ConfGroup){
+        // valid
+        if (ConfGroup.getGroupKey()==null || StringUtils.isBlank(ConfGroup.getGroupKey())) {
+            return new ReturnT<String>(500, "请输入GroupKey");
+        }
+        if (ConfGroup.getGroupKey().length()<1 || ConfGroup.getGroupKey().length()>100) {
+            return new ReturnT<String>(500, "GroupKey长度限制为1~100");
+        }
+        if (ConfGroup.getGroupName()==null || StringUtils.isBlank(ConfGroup.getGroupName())) {
+            return new ReturnT<String>(500, "请输入分组名称");
+        }
+        if (ConfGroup.getGroupName().length()<1 || ConfGroup.getGroupName().length()>100) {
+            return new ReturnT<String>(500, "GroupName长度限制为1~100");
+        }
+        int ret =0;
+        String json ="";
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("groupKey",ConfGroup.getGroupKey());
+        params.put("groupName",ConfGroup.getGroupName());
+        String doMethod = CommonPropertiesUtils.get("group_add");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:ReturnT.FAIL;
+    }
+    @RequestMapping("/group/update")
+    @ResponseBody
+    public ReturnT<String> groupUpdate(ConfGroup ConfGroup){
 
+        // valid
+        if (ConfGroup.getGroupKey()==null || StringUtils.isBlank(ConfGroup.getGroupKey())) {
+            return new ReturnT<String>(500, "请输入GroupKey");
+        }
+        if (ConfGroup.getGroupKey().length()<1 || ConfGroup.getGroupKey().length()>100) {
+            return new ReturnT<String>(500, "GroupKey长度限制为1~100");
+        }
+        if (ConfGroup.getGroupName()==null || StringUtils.isBlank(ConfGroup.getGroupName())) {
+            return new ReturnT<String>(500, "请输入分组名称");
+        }
+        if (ConfGroup.getGroupName().length()<1 || ConfGroup.getGroupName().length()>100) {
+            return new ReturnT<String>(500, "GroupName长度限制为1~100");
+        }
+
+        int ret =0;
+        String json ="";
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("groupKey",ConfGroup.getGroupKey());
+        params.put("groupName",ConfGroup.getGroupName());
+        params.put("isRemove",0);
+        String doMethod = CommonPropertiesUtils.get("group_update");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
+    }
+    @RequestMapping("/group/delete")
+    @ResponseBody
+    public ReturnT<String> groupDelete(String groupKey){
+
+        int ret =0;
+        String json ="";
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("groupKey",groupKey);
+        params.put("isRemove",1);
+        params.put("isdelete",1);
+        String doMethod = CommonPropertiesUtils.get("group_update");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
+    }
 }

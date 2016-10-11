@@ -7,7 +7,7 @@ $(function() {
 		ComConfirm.show("确认删除分组?", function(){
 			$.ajax({
 				type : 'POST',
-				url : base_url + '/group/remove',
+				url : base_url + '/conf/group/delete',
 				data : {"groupKey":groupKey},
 				dataType : "json",
 				success : function(data){
@@ -79,7 +79,7 @@ $(function() {
 			element.parent('div').append(error);
 		},
 		submitHandler : function(form) {
-			$.post(base_url + "/group/save",  $("#addModal .form").serialize(), function(data, status) {
+			$.post(base_url + "/conf/group/add",  $("#addModal .form").serialize(), function(data, status) {
 				if (data.code == "200") {
 					$('#addModal').modal('hide');
 					setTimeout(function () {
@@ -146,7 +146,7 @@ $(function() {
 			element.parent('div').append(error);
 		},
 		submitHandler : function(form) {
-			$.post(base_url + "/group/update",  $("#updateModal .form").serialize(), function(data, status) {
+			$.post(base_url + "/conf/group/update",  $("#updateModal .form").serialize(), function(data, status) {
 				if (data.code == "200") {
 					$('#addModal').modal('hide');
 					setTimeout(function () {

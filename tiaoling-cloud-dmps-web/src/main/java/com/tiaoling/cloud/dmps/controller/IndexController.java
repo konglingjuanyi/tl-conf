@@ -33,7 +33,7 @@ public class IndexController {
         if (!PermissionInterceptor.ifLogin(request)) {
             return "redirect:/toLogin";
         }
-        return "redirect:/conf";
+        return "redirect:/conf/node";
     }
     @RequestMapping("/toLogin")
     @PermessionLimit(limit=false)
@@ -84,7 +84,7 @@ public class IndexController {
         return ReturnT.SUCCESS;
     }
 
-    @RequestMapping("/help")
+    @RequestMapping("/conf/help")
     @PermessionLimit
     public String help() {
         return "help";
