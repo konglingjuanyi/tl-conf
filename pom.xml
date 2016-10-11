@@ -12,6 +12,7 @@
         <module>tiaoling-cloud-core</module>
         <module>tiaoling-cloud-conf-api</module>
         <module>tiaoling-cloud-conf-service</module>
+        <module>tiaoling-cloud-dmps-web</module>
     </modules>
     <packaging>pom</packaging>
 
