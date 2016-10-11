@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,7 +35,7 @@ public class GroupController {
 
     @RequestMapping(value = "add",method = {RequestMethod.POST},produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String group(HttpServletRequest request, HttpServletResponse response)
+    public String add(HttpServletRequest request, HttpServletResponse response)
     {
         Map<String,Object> result = new HashMap<>();
         int size = request.getContentLength();
@@ -57,7 +58,7 @@ public class GroupController {
             {
                 return ResultUtil.creComErrorResult("分组名称不能为空");
             }
-            ConfGroup group= groupService.getGroup(paramJson.getString("groupName").trim());
+            ConfGroup group= groupService.getGroup(paramJson.getString("groupKey").trim());
             if(group!=null)
             {
                 return ResultUtil.creComErrorResult("分组已经存在");
@@ -73,6 +74,53 @@ public class GroupController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
+        }
+        return ResultUtil.creObjSucResult(result);
+    }
+    @RequestMapping(value = "update",method = {RequestMethod.POST},produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String update(HttpServletRequest request, HttpServletResponse response)
+    {
+        Map<String,Object> result = new HashMap<>();
+        int size = request.getContentLength();
+        InputStream is;
+        try {
+            is = request.getInputStream();
+            byte[] reqBodyBytes = HttpUtils.readBytes(is, size);
+            String params = new String(reqBodyBytes);
+            logger.info("tl-conf修改分组（group）（group/update）请求报文：" + params);
+            JSONObject paramJson = JSONObject.fromObject(params);
+            if(paramJson==null)
+            {
+                return ResultUtil.creComErrorResult("分组信息不能为空");
+            }
+            int isRemove =paramJson.getInt("isRemove");
+            if(paramJson.get("groupKey")==null || paramJson.getString("groupKey").trim().equals(""))
+            {
+                return ResultUtil.creComErrorResult("分组键(Key)不能为空");
+            }
+            if(isRemove==0) {
+                if (paramJson.get("groupName") == null || paramJson.getString("groupName").trim().equals("")) {
+                    return ResultUtil.creComErrorResult("分组名称不能为空");
+                }
+            }
+            ConfGroup group = groupService.getGroup(paramJson.getString("groupKey").trim());
+
+            if(group==null)
+            {
+                return ResultUtil.creComErrorResult("分组信息不存在");
+            }
+            else
+            {
+                if(isRemove==1) group.setIsdelete(true);
+                else group.setGroupName(paramJson.getString("groupName").trim());
+                int row= groupService.updateGroup(group);
+                result.put("row",row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
         }
         return ResultUtil.creObjSucResult(result);
     }

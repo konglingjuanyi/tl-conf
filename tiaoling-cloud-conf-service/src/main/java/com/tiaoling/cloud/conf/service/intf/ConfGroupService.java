@@ -11,4 +11,5 @@ public interface ConfGroupService {
     List<ConfGroup>  findAll();
     ConfGroup getGroup(String groupKey);
     int addGroup(ConfGroup group);
+    int updateGroup(ConfGroup group);
 }

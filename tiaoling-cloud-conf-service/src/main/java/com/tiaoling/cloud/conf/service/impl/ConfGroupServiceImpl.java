@@ -29,4 +29,9 @@ public class ConfGroupServiceImpl implements ConfGroupService{
     public int addGroup(ConfGroup group) {
         return groupMapper.insert(group);
     }
+
+    @Override
+    public int updateGroup(ConfGroup group) {
+        return groupMapper.updateByPrimaryKeySelective(group);
+    }
 }

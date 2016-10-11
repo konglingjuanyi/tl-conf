@@ -61,26 +61,16 @@ public class IndexController {
                 }
                 json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
                         + doMethod, JsonUtils.getJSONString(params));
-                if(json.equals("SUCCESS"))
-                PermissionInterceptor.login(response, ifRem);
-                return ReturnT.SUCCESS;
+                if(json.equals("SUCCESS")) {
+                    PermissionInterceptor.login(response, ifRem);
+                    return ReturnT.SUCCESS;
+                }
+                else return new ReturnT<String>(500, "账号或密码错误");
             }
             else
             {
                 return new ReturnT<String>(500, "账号或密码错误");
             }
-//            Properties prop = PropertiesUtil.loadProperties("config.properties");
-//            if (StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)
-//                    && PropertiesUtil.getString(prop, "login.username").equals(userName)
-//                    && PropertiesUtil.getString(prop, "login.password").equals(password)) {
-//                boolean ifRem = false;
-//                if (StringUtils.isNotBlank(ifRemember) && "on".equals(ifRemember)) {
-//                    ifRem = true;
-//                }
-//                PermissionInterceptor.login(response, ifRem);
-//            } else {
-//                return new ReturnT<String>(500, "账号或密码错误");
-//            }
         }
         return new ReturnT<String>(500, "账号或密码错误");
     }

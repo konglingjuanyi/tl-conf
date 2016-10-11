@@ -13,4 +13,10 @@ public interface ConfNodeMapper {
     List<ConfNode> pageList(Map<String,Object> params);
 
     int count(Map<String,Object> params);
+
+    ConfNode selectByPrimaryKey(Map<String,Object> params);
+
+    int update(ConfNode node);
+
+    int updateByPrimaryKeySelective(ConfNode node);
 }

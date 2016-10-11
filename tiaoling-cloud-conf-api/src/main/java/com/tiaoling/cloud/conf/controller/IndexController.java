@@ -1,5 +1,6 @@
 package com.tiaoling.cloud.conf.controller;
 
+import com.tiaoling.cloud.conf.utils.ResultUtil;
 import com.tiaoling.cloud.core.utils.HttpUtils;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public class IndexController {
             ArrayList<String> paramNames = new ArrayList<String>();
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
         }
 
         return "SUCCESS";

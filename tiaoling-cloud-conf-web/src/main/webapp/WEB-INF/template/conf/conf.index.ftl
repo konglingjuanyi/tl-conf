@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="input-group">
-                            <span class="input-group-addon">KEY</span>
+                            <span class="input-group-addon">结点键(Key)</span>
                             <input type="text" class="form-control" id="nodeKey" value="${nodeKey}" autocomplete="on" >
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         	</div>
                         </div>
 						<div class="form-group">
-							<label for="firstname" class="col-sm-2 control-label">键</label>
+							<label for="firstname" class="col-sm-2 control-label">结点键(Key)</label>
 							<div class="col-sm-10"><input type="text" class="form-control" name="nodeKey" placeholder="请输入KEY" maxlength="100" ></div>
 						</div>
                         <div class="form-group">
@@ -160,11 +160,11 @@
 	         	<div class="modal-body">
 					<form class="form-horizontal form" role="form" >
                         <div class="form-group">
-                            <label for="firstname" class="col-sm-2 control-label">GROUP</label>
+                            <label for="firstname" class="col-sm-2 control-label">所属分组Key</label>
                             <div class="col-sm-10"><input type="text" class="form-control" name="nodeGroup" placeholder="请输入KEY" maxlength="100" readonly></div>
                         </div>
                         <div class="form-group">
-                            <label for="firstname" class="col-sm-2 control-label">KEY</label>
+                            <label for="firstname" class="col-sm-2 control-label">结点键(KEY)</label>
                             <div class="col-sm-10"><input type="text" class="form-control" name="nodeKey" placeholder="请输入KEY" maxlength="100" readonly></div>
                         </div>
                         <div class="form-group">
@@ -172,7 +172,7 @@
                             <div class="col-sm-10"><input type="text" class="form-control" name="nodeDesc" placeholder="请输入描述" maxlength="100" ></div>
                         </div>
                         <div class="form-group">
-                            <label for="lastname" class="col-sm-2 control-label">VALUE</label>
+                            <label for="lastname" class="col-sm-2 control-label">值</label>
                             <div class="col-sm-10">
                                 <textarea class="textarea" name="nodeValue" maxlength="512" placeholder="请输入VALUE" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>

@@ -44,23 +44,23 @@ $(function() {
 		rules : {
 			groupKey : {
 				required : true,
-				rangelength:[4,100],
+				rangelength:[1,100],
 				myValid01 : true
 			},
 			groupName : {
 				required : true,
-				rangelength:[4, 12]
+				rangelength:[1, 100]
 			}
 		},
 		messages : {
 			groupKey : {
 				required :"请输入“GroupKey”",
-				rangelength:"GroupKey~100",
+				rangelength:"GroupKey长度1~100",
 				myValid01: "限制以小写字母开头，由小写字母、数字和中划线组成"
 			},
 			groupName : {
 				required :"请输入“分组名”",
-				rangelength:"长度限制为4~12"
+				rangelength:"长度限制为1~100"
 			},
 			order : {
 				required :"请输入“排序”",
@@ -116,23 +116,23 @@ $(function() {
 		rules : {
 			groupKey : {
 				required : true,
-				rangelength:[4,100],
+				rangelength:[1,100],
 				myValid01 : true
 			},
 			groupName : {
 				required : true,
-				rangelength:[4, 12]
+				rangelength:[1, 100]
 			}
 		},
 		messages : {
 			groupKey : {
 				required :"请输入“GroupKey”",
-				rangelength:"GroupKey长度限制为4~100",
+				rangelength:"GroupKey长度限制为1~100",
 				myValid01: "限制以小写字母开头，由小写字母、数字和中划线组成"
 			},
 			groupName : {
 				required :"请输入“分组名”",
-				rangelength:"长度限制为4~12"
+				rangelength:"长度限制为1~100"
 			}
 		},
 		highlight : function(element) {

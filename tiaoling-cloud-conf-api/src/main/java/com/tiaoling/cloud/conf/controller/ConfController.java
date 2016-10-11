@@ -56,6 +56,7 @@ public class ConfController {
             lists=groupService.findAll();
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
         }
 //        ConfGroup group = new ConfGroup();
 //        group.setGroupName("group1");
@@ -99,6 +100,7 @@ public class ConfController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
         }
         result.put("data",lists);
         result.put("count",count);

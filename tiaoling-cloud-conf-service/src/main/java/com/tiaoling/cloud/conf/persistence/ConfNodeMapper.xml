@@ -64,6 +64,7 @@
       <if test="nodeKey != null and nodeKey != '' ">
         AND t.node_key =#{nodeKey}
       </if>
+      AND t.isdelete =0
     </trim>
     ORDER BY t.node_key
     LIMIT #{start}, #{limit}
@@ -79,6 +80,33 @@
       <if test="nodeKey != null and nodeKey != '' ">
         AND t.node_key = #{nodeKey}
       </if>
+      AND t.isdelete =0
     </trim>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from tl_conf_node
+    where node_group = #{nodeGroup,jdbcType=VARCHAR} and node_key=#{nodeKey,jdbcType=VARCHAR} and isdelete=0
+  </select>
+  <update id="update" parameterType="com.tiaoling.cloud.conf.domain.ConfNode" >
+    update tl_conf_node
+    set node_value = #{nodeValue,jdbcType=VARCHAR},node_desc = #{nodeDesc,jdbcType=VARCHAR},isdelete = #{isdelete,jdbcType=BIT}
+    where node_group = #{nodeGroup,jdbcType=VARCHAR} and node_key = #{nodeKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaoling.cloud.conf.domain.ConfNode" >
+    update tl_conf_node
+    <set >
+      <if test="nodeValue != null" >
+        node_value = #{nodeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeDesc != null" >
+        node_desc = #{nodeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where node_group = #{nodeGroup,jdbcType=VARCHAR} and node_key = #{nodeKey,jdbcType=VARCHAR}
+  </update>
 </mapper>

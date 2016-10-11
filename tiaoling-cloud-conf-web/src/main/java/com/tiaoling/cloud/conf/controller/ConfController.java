@@ -6,6 +6,7 @@ import com.tiaoling.cloud.conf.domain.ConfNode;
 import com.tiaoling.cloud.conf.utils.CommonPropertiesUtils;
 import com.tiaoling.cloud.conf.utils.HttpUtils;
 import com.tiaoling.cloud.conf.utils.JsonUtils;
+import com.tiaoling.cloud.conf.utils.ReturnT;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -80,4 +81,113 @@ public class ConfController {
         }
         return result;
     }
+    /**
+     * get
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    @PermessionLimit
+    public ReturnT<String> delete(String nodeGroup, String nodeKey){
+        String json ="";
+        int ret =0;
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("nodeGroup",nodeGroup);
+        params.put("nodeKey",nodeKey);
+        params.put("isRemove",1);
+        params.put("isdelete",1);
+        String doMethod = CommonPropertiesUtils.get("node_update");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
+    }
+    /**
+     * create/update
+     * @return
+     */
+    @RequestMapping("/add")
+    @ResponseBody
+    @PermessionLimit
+    public ReturnT<String> add(ConfNode ConfNode)
+    {
+        String json ="";
+        int ret =0;
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("nodeGroup",ConfNode.getNodeGroup());
+        params.put("nodeKey",ConfNode.getNodeKey());
+        params.put("isdelete",0);
+        params.put("nodeValue",ConfNode.getNodeValue());
+        params.put("nodeDesc",ConfNode.getNodeDesc());
+        String doMethod = CommonPropertiesUtils.get("node_add");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
+    }
+
+    /**
+     * create/update
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    @PermessionLimit
+    public ReturnT<String> update(ConfNode ConfNode)
+    {
+        String json ="";
+        int ret =0;
+        String message="";
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("nodeGroup",ConfNode.getNodeGroup());
+        params.put("nodeKey",ConfNode.getNodeKey());
+        params.put("isRemove",0);
+        params.put("isdelete",0);
+        params.put("nodeValue",ConfNode.getNodeValue());
+        params.put("nodeDesc",ConfNode.getNodeDesc());
+        String doMethod = CommonPropertiesUtils.get("node_update");
+        json = HttpUtils.doPost(CommonPropertiesUtils.get("cloud_conf_api_url") + "/"
+                + doMethod, JsonUtils.getJSONString(params));
+        if(StringUtils.isNotBlank(json))
+        {
+            Map<String,Object> map = JsonUtils.toMap(json);
+            if(map.get("Code").toString().equals("1") && map.get("Body")!=null)
+            {
+                JSONObject object = JSONObject.fromObject(map.get("Body").toString());
+                ret = object.getInt("row");
+            }
+            else
+            {
+                message=map.get("Message").toString();
+            }
+        }
+        return (ret>0)?ReturnT.SUCCESS:new ReturnT<String>(500, message);
+    }
+
 }
