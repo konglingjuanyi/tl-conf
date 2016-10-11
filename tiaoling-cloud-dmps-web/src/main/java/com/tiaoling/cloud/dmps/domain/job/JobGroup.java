@@ -1,0 +1,56 @@
+package com.tiaoling.cloud.dmps.domain.job;
+
+import java.util.List;
+
+/**
+ * Created by yhl on 2016/10/11.
+ */
+public class JobGroup {
+    private int id;
+    private String appName;
+    private String title;
+    private int order;
+
+    // registry list
+    private List<String> registryList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    public List<String> getRegistryList() {
+        return registryList;
+    }
+
+    public void setRegistryList(List<String> registryList) {
+        this.registryList = registryList;
+    }
+}

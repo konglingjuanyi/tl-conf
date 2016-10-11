@@ -1,8 +1,8 @@
 package com.tiaoling.cloud.dmps.controller;
 
 import com.tiaoling.cloud.dmps.annotation.PermessionLimit;
-import com.tiaoling.cloud.dmps.domain.ConfGroup;
-import com.tiaoling.cloud.dmps.domain.ConfNode;
+import com.tiaoling.cloud.dmps.domain.conf.ConfGroup;
+import com.tiaoling.cloud.dmps.domain.conf.ConfNode;
 import com.tiaoling.cloud.dmps.utils.CommonPropertiesUtils;
 import com.tiaoling.cloud.dmps.utils.HttpUtils;
 import com.tiaoling.cloud.dmps.utils.JsonUtils;
@@ -206,7 +206,7 @@ public class ConfController {
             }
         }
         model.addAttribute("list", list);
-        return "group/group.index";
+        return "conf/group.index";
     }
     @RequestMapping("/group/add")
     @ResponseBody

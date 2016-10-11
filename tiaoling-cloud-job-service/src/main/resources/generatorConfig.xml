@@ -10,19 +10,19 @@
         </commentGenerator>
         <!-- 数据库相关驱动连接设置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/tl-conf" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/tl-job" userId="root"
                         password="1234" />
         <!-- 自动生成的实体类的设置 -->
-        <javaModelGenerator targetPackage="com.tiaoling.cloud.conf.domain"
+        <javaModelGenerator targetPackage="com.tiaoling.cloud.job.domain"
                             targetProject="src/main/java" />
         <!-- 自动生成的mapper接口的设置 -->
-        <sqlMapGenerator targetPackage="com.tiaoling.cloud.conf.persistence"
+        <sqlMapGenerator targetPackage="com.tiaoling.cloud.job.persistence"
                          targetProject="src/main/java" />
         <!-- 自动生成的mapper.xml文件的设置 -->
-        <javaClientGenerator targetPackage="com.tiaoling.cloud.conf.persistence"
+        <javaClientGenerator targetPackage="com.tiaoling.cloud.job.persistence"
                              targetProject="src/main/java" type="XMLMAPPER" />
         <!-- 数据库中对应表格的设置 -->
-        <table domainObjectName="ConfNode" tableName="tl_conf_node"
+        <table domainObjectName="TriggerGroup" tableName="tl_job_qrtz_trigger_group"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

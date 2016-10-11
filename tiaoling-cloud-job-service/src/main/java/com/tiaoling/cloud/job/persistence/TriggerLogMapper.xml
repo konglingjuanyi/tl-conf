@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaoling.cloud.job.persistence.TriggerLogMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaoling.cloud.job.domain.TriggerLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_group" property="jobGroup" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="executor_address" property="executorAddress" jdbcType="VARCHAR" />
+    <result column="executor_handler" property="executorHandler" jdbcType="VARCHAR" />
+    <result column="executor_param" property="executorParam" jdbcType="VARCHAR" />
+    <result column="trigger_time" property="triggerTime" jdbcType="TIMESTAMP" />
+    <result column="trigger_status" property="triggerStatus" jdbcType="VARCHAR" />
+    <result column="trigger_msg" property="triggerMsg" jdbcType="VARCHAR" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
+    <result column="handle_status" property="handleStatus" jdbcType="VARCHAR" />
+    <result column="handle_msg" property="handleMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, job_group, job_name, executor_address, executor_handler, executor_param, trigger_time, 
+    trigger_status, trigger_msg, handle_time, handle_status, handle_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tl_job_qrtz_trigger_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tl_job_qrtz_trigger_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tiaoling.cloud.job.domain.TriggerLog" >
+    insert into tl_job_qrtz_trigger_log (id, job_group, job_name, 
+      executor_address, executor_handler, executor_param, 
+      trigger_time, trigger_status, trigger_msg, 
+      handle_time, handle_status, handle_msg
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobGroup,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, 
+      #{executorAddress,jdbcType=VARCHAR}, #{executorHandler,jdbcType=VARCHAR}, #{executorParam,jdbcType=VARCHAR}, 
+      #{triggerTime,jdbcType=TIMESTAMP}, #{triggerStatus,jdbcType=VARCHAR}, #{triggerMsg,jdbcType=VARCHAR}, 
+      #{handleTime,jdbcType=TIMESTAMP}, #{handleStatus,jdbcType=VARCHAR}, #{handleMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaoling.cloud.job.domain.TriggerLog" >
+    insert into tl_job_qrtz_trigger_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobGroup != null" >
+        job_group,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="executorAddress != null" >
+        executor_address,
+      </if>
+      <if test="executorHandler != null" >
+        executor_handler,
+      </if>
+      <if test="executorParam != null" >
+        executor_param,
+      </if>
+      <if test="triggerTime != null" >
+        trigger_time,
+      </if>
+      <if test="triggerStatus != null" >
+        trigger_status,
+      </if>
+      <if test="triggerMsg != null" >
+        trigger_msg,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
+      </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="handleMsg != null" >
+        handle_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobGroup != null" >
+        #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="executorAddress != null" >
+        #{executorAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="executorHandler != null" >
+        #{executorHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="executorParam != null" >
+        #{executorParam,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerTime != null" >
+        #{triggerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="triggerStatus != null" >
+        #{triggerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerMsg != null" >
+        #{triggerMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMsg != null" >
+        #{handleMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaoling.cloud.job.domain.TriggerLog" >
+    update tl_job_qrtz_trigger_log
+    <set >
+      <if test="jobGroup != null" >
+        job_group = #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="executorAddress != null" >
+        executor_address = #{executorAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="executorHandler != null" >
+        executor_handler = #{executorHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="executorParam != null" >
+        executor_param = #{executorParam,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerTime != null" >
+        trigger_time = #{triggerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="triggerStatus != null" >
+        trigger_status = #{triggerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerMsg != null" >
+        trigger_msg = #{triggerMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMsg != null" >
+        handle_msg = #{handleMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaoling.cloud.job.domain.TriggerLog" >
+    update tl_job_qrtz_trigger_log
+    set job_group = #{jobGroup,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      executor_address = #{executorAddress,jdbcType=VARCHAR},
+      executor_handler = #{executorHandler,jdbcType=VARCHAR},
+      executor_param = #{executorParam,jdbcType=VARCHAR},
+      trigger_time = #{triggerTime,jdbcType=TIMESTAMP},
+      trigger_status = #{triggerStatus,jdbcType=VARCHAR},
+      trigger_msg = #{triggerMsg,jdbcType=VARCHAR},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      handle_status = #{handleStatus,jdbcType=VARCHAR},
+      handle_msg = #{handleMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

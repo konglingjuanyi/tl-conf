@@ -1,4 +1,4 @@
-package com.tiaoling.cloud.dmps.domain;
+package com.tiaoling.cloud.dmps.domain.conf;
 
 /**
  * Created by yhl on 2016/10/9.

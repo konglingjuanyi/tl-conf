@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaoling.cloud.job.persistence.TriggerLogGlueMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_group" property="jobGroup" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="glue_remark" property="glueRemark" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tiaoling.cloud.job.domain.TriggerLogGlue" extends="BaseResultMap" >
+    <result column="glue_source" property="glueSource" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, job_group, job_name, glue_remark, add_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    glue_source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tl_job_qrtz_trigger_logglue
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tl_job_qrtz_trigger_logglue
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    insert into tl_job_qrtz_trigger_logglue (id, job_group, job_name, 
+      glue_remark, add_time, update_time, 
+      glue_source)
+    values (#{id,jdbcType=INTEGER}, #{jobGroup,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, 
+      #{glueRemark,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{glueSource,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    insert into tl_job_qrtz_trigger_logglue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobGroup != null" >
+        job_group,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="glueRemark != null" >
+        glue_remark,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="glueSource != null" >
+        glue_source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobGroup != null" >
+        #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="glueRemark != null" >
+        #{glueRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glueSource != null" >
+        #{glueSource,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    update tl_job_qrtz_trigger_logglue
+    <set >
+      <if test="jobGroup != null" >
+        job_group = #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="glueRemark != null" >
+        glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glueSource != null" >
+        glue_source = #{glueSource,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    update tl_job_qrtz_trigger_logglue
+    set job_group = #{jobGroup,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      glue_source = #{glueSource,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaoling.cloud.job.domain.TriggerLogGlue" >
+    update tl_job_qrtz_trigger_logglue
+    set job_group = #{jobGroup,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

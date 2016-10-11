@@ -12,3 +12,5 @@
 /tiaoling-cloud-dmps-web/tiaoling-cloud-dmps-web.iml
 /tiaoling-cloud-job-api/tiaoling-cloud-job-api.iml
 /tiaoling-cloud-job-service/tiaoling-cloud-job-service.iml
+/tiaoling-cloud-job-service/target
+/tiaoling-cloud-job-api/target

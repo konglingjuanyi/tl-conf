@@ -1,6 +1,6 @@
 package com.tiaoling.cloud.dmps.controller;
 
-import com.tiaoling.cloud.dmps.domain.ConfGroup;
+import com.tiaoling.cloud.dmps.domain.conf.ConfGroup;
 import com.tiaoling.cloud.dmps.utils.CommonPropertiesUtils;
 import com.tiaoling.cloud.dmps.utils.HttpUtils;
 import com.tiaoling.cloud.dmps.utils.JsonUtils;

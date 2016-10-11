@@ -5,10 +5,13 @@ import com.tiaoling.cloud.conf.domain.ConfNode;
 import com.tiaoling.cloud.conf.service.intf.ConfGroupService;
 import com.tiaoling.cloud.conf.service.intf.ConfNodeService;
 import com.tiaoling.cloud.conf.utils.ResultUtil;
+import com.tiaoling.cloud.conf.zk.ConfClient;
 import com.tiaoling.cloud.conf.zk.ConfZkClient;
 import com.tiaoling.cloud.core.utils.HttpUtils;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +107,40 @@ public class ConfController {
         }
         result.put("data",lists);
         result.put("count",count);
+        return ResultUtil.creObjSucResult(result);
+    }
+    @RequestMapping(value = "value",method = {RequestMethod.POST},produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String value(HttpServletRequest request, HttpServletResponse response)
+    {
+        Map<String,Object> params=new HashMap<>();
+        Map<String,Object> result=new HashMap<>();
+        int size = request.getContentLength();
+        InputStream is;
+        try {
+            is = request.getInputStream();
+            byte[] reqBodyBytes = HttpUtils.readBytes(is, size);
+            String paramStr = new String(reqBodyBytes);
+            logger.info("tl-conf获取分组配置参数值（value）（conf/value）请求报文：" + paramStr);
+            JSONObject paramJson = JSONObject.fromObject(paramStr);
+            if(paramJson!=null)
+            {
+                for (Object key : paramJson.keySet())
+                {
+                    String value = ConfClient.get(key.toString(),paramJson.getString(key.toString()));
+                    if(StringUtils.isNotEmpty(value))
+                        result.put(key.toString(),value);
+                    else
+                    result.put(key.toString(),paramJson.get(key.toString()));
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResultUtil.creComErrorResult(e.getMessage());
+        }
+//        result.put("data",lists);
+//        result.put("count",count);
         return ResultUtil.creObjSucResult(result);
     }
 }

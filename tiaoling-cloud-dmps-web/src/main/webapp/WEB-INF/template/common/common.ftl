@@ -360,24 +360,37 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 调度管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 调度日志</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/job"><i class="fa fa-circle-o text-red"></i> 执行器管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job/info"><i class="fa fa-circle-o text-red"></i> 调度管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job/log"><i class="fa fa-circle-o text-red"></i> 调度日志</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/job/scheduler"><i class="fa fa-circle-o text-red"></i> 执行器管理</a></li>
                     <li class="nav-click"><a href="${request.contextPath}/job/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                     </ul>
             </li>
             <li class="treeview nav-click">
                 <a href="#">
-                    <i class="glyphicon glyphicon-th-list"></i>
+                    <i class="fa fa-floppy-o"></i>
                     <span>缓存管理</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-click"><a href="${request.contextPath}/cache"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
-                    <li class="nav-click"><a href="${request.contextPath}/cache"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/cache"><i class="fa fa-circle-o text-red"></i> 缓存管理</a></li>
                     <li class="nav-click"><a href="${request.contextPath}/cache/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
+                </ul>
+            </li>
+            <li class="treeview nav-click">
+                <a href="#">
+                    <i class="fa fa-heartbeat"></i>
+                    <span>微服务管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="nav-click"><a href="${request.contextPath}/micro"><i class="fa fa-circle-o text-red"></i> 配置管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/micro"><i class="fa fa-circle-o text-red"></i> 分组管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/micro/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                 </ul>
             </li>
         </ul>

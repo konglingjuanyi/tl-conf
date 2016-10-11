@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaoling.cloud.job.persistence.TriggerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_group" property="jobGroup" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_cron" property="jobCron" jdbcType="VARCHAR" />
+    <result column="job_desc" property="jobDesc" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="alarm_email" property="alarmEmail" jdbcType="VARCHAR" />
+    <result column="executor_handler" property="executorHandler" jdbcType="VARCHAR" />
+    <result column="executor_param" property="executorParam" jdbcType="VARCHAR" />
+    <result column="glue_switch" property="glueSwitch" jdbcType="INTEGER" />
+    <result column="glue_remark" property="glueRemark" jdbcType="VARCHAR" />
+    <result column="child_jobkey" property="childJobkey" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tiaoling.cloud.job.domain.TriggerInfo" extends="BaseResultMap" >
+    <result column="glue_source" property="glueSource" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, job_group, job_name, job_cron, job_desc, add_time, update_time, author, alarm_email, 
+    executor_handler, executor_param, glue_switch, glue_remark, child_jobkey
+  </sql>
+  <sql id="Blob_Column_List" >
+    glue_source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tl_job_qrtz_trigger_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tl_job_qrtz_trigger_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    insert into tl_job_qrtz_trigger_info (id, job_group, job_name, 
+      job_cron, job_desc, add_time, 
+      update_time, author, alarm_email, 
+      executor_handler, executor_param, glue_switch, 
+      glue_remark, child_jobkey, glue_source
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobGroup,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, 
+      #{jobCron,jdbcType=VARCHAR}, #{jobDesc,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, #{alarmEmail,jdbcType=VARCHAR}, 
+      #{executorHandler,jdbcType=VARCHAR}, #{executorParam,jdbcType=VARCHAR}, #{glueSwitch,jdbcType=INTEGER}, 
+      #{glueRemark,jdbcType=VARCHAR}, #{childJobkey,jdbcType=VARCHAR}, #{glueSource,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    insert into tl_job_qrtz_trigger_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobGroup != null" >
+        job_group,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="jobCron != null" >
+        job_cron,
+      </if>
+      <if test="jobDesc != null" >
+        job_desc,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="alarmEmail != null" >
+        alarm_email,
+      </if>
+      <if test="executorHandler != null" >
+        executor_handler,
+      </if>
+      <if test="executorParam != null" >
+        executor_param,
+      </if>
+      <if test="glueSwitch != null" >
+        glue_switch,
+      </if>
+      <if test="glueRemark != null" >
+        glue_remark,
+      </if>
+      <if test="childJobkey != null" >
+        child_jobkey,
+      </if>
+      <if test="glueSource != null" >
+        glue_source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobGroup != null" >
+        #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCron != null" >
+        #{jobCron,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null" >
+        #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmEmail != null" >
+        #{alarmEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="executorHandler != null" >
+        #{executorHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="executorParam != null" >
+        #{executorParam,jdbcType=VARCHAR},
+      </if>
+      <if test="glueSwitch != null" >
+        #{glueSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="glueRemark != null" >
+        #{glueRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="childJobkey != null" >
+        #{childJobkey,jdbcType=VARCHAR},
+      </if>
+      <if test="glueSource != null" >
+        #{glueSource,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    update tl_job_qrtz_trigger_info
+    <set >
+      <if test="jobGroup != null" >
+        job_group = #{jobGroup,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCron != null" >
+        job_cron = #{jobCron,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null" >
+        job_desc = #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmEmail != null" >
+        alarm_email = #{alarmEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="executorHandler != null" >
+        executor_handler = #{executorHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="executorParam != null" >
+        executor_param = #{executorParam,jdbcType=VARCHAR},
+      </if>
+      <if test="glueSwitch != null" >
+        glue_switch = #{glueSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="glueRemark != null" >
+        glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="childJobkey != null" >
+        child_jobkey = #{childJobkey,jdbcType=VARCHAR},
+      </if>
+      <if test="glueSource != null" >
+        glue_source = #{glueSource,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    update tl_job_qrtz_trigger_info
+    set job_group = #{jobGroup,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_cron = #{jobCron,jdbcType=VARCHAR},
+      job_desc = #{jobDesc,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      alarm_email = #{alarmEmail,jdbcType=VARCHAR},
+      executor_handler = #{executorHandler,jdbcType=VARCHAR},
+      executor_param = #{executorParam,jdbcType=VARCHAR},
+      glue_switch = #{glueSwitch,jdbcType=INTEGER},
+      glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      child_jobkey = #{childJobkey,jdbcType=VARCHAR},
+      glue_source = #{glueSource,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaoling.cloud.job.domain.TriggerInfo" >
+    update tl_job_qrtz_trigger_info
+    set job_group = #{jobGroup,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_cron = #{jobCron,jdbcType=VARCHAR},
+      job_desc = #{jobDesc,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      alarm_email = #{alarmEmail,jdbcType=VARCHAR},
+      executor_handler = #{executorHandler,jdbcType=VARCHAR},
+      executor_param = #{executorParam,jdbcType=VARCHAR},
+      glue_switch = #{glueSwitch,jdbcType=INTEGER},
+      glue_remark = #{glueRemark,jdbcType=VARCHAR},
+      child_jobkey = #{childJobkey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
