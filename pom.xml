@@ -13,6 +13,8 @@
         <module>tiaoling-cloud-conf-api</module>
         <module>tiaoling-cloud-conf-service</module>
         <module>tiaoling-cloud-dmps-web</module>
+        <module>tiaoling-cloud-job-service</module>
+        <module>tiaoling-cloud-job-api</module>
     </modules>
     <packaging>pom</packaging>
 
