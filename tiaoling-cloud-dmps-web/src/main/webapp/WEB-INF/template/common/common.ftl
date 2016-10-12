@@ -393,6 +393,19 @@
                     <li class="nav-click"><a href="${request.contextPath}/micro/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
                 </ul>
             </li>
+            <li class="treeview nav-click">
+                <a href="#">
+                    <i class="fa fa-heartbeat"></i>
+                    <span>服务通讯管理</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="nav-click"><a href="${request.contextPath}/rpc"><i class="fa fa-circle-o text-red"></i> 服务管理</a></li>
+                    <li class="nav-click"><a href="${request.contextPath}/rpc/help"><i class="fa fa-circle-o text-yellow"></i> 使用教程</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

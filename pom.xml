@@ -15,6 +15,7 @@
         <module>tiaoling-cloud-dmps-web</module>
         <module>tiaoling-cloud-job-service</module>
         <module>tiaoling-cloud-job-api</module>
+        <module>tiaoling-cloud-rpc-core</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -32,6 +33,7 @@
         <mail.version>1.4.7</mail.version>
         <protobuf.version>3.0.0</protobuf.version>
         <javax.servlet-api.version>2.5</javax.servlet-api.version>
+        <jsp-api.version>2.1</jsp-api.version>
         <druid.version>1.0.26</druid.version>
         <mybatis.version>3.3.0</mybatis.version>
         <spring-mybatis.version>1.2.5</spring-mybatis.version>

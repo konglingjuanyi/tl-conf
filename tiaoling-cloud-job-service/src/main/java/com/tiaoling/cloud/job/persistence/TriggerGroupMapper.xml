@@ -8,7 +8,7 @@
     <result column="order" property="order" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, app_name, title, order
+    id, app_name, title, `order`
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -16,7 +16,7 @@
     from tl_job_qrtz_trigger_group
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="finddAll" resultMap="BaseResultMap" >
+  <select id="findAllTriggerGroup" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from tl_job_qrtz_trigger_group

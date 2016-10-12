@@ -13,7 +13,7 @@ public interface TriggerGroupMapper {
 
     TriggerGroup selectByPrimaryKey(Integer id);
 
-    List<TriggerGroup> findAll();
+    List<TriggerGroup> findAllTriggerGroup();
 
     int updateByPrimaryKeySelective(TriggerGroup record);
 

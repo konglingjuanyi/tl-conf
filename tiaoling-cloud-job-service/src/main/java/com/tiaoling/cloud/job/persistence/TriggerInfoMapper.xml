@@ -35,6 +35,32 @@
     from tl_job_qrtz_trigger_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectPageList" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map" >
+    SELECT <include refid="Base_Column_List" />
+    FROM tl_job_qrtz_trigger_info AS t
+    <trim prefix="WHERE" prefixOverrides="AND | OR" >
+      <if test="jobGroup gt 0">
+        AND t.job_group = #{jobGroup}
+      </if>
+      <if test="jobName != null and jobName != ''">
+        AND t.executor_handler =#{jobName}
+      </if>
+    </trim>
+    ORDER BY id DESC
+    LIMIT #{start}, #{limit}
+  </select>
+  <select id="selectPageListCount" resultType="int" parameterType="java.util.Map" >
+    SELECT count(1)
+    FROM tl_job_qrtz_trigger_info AS t
+    <trim prefix="WHERE" prefixOverrides="AND | OR" >
+      <if test="jobGroup gt 0">
+        AND t.job_group = #{jobGroup}
+      </if>
+      <if test="jobName != null and jobName != ''">
+        AND t.executor_handler =#{jobName}
+      </if>
+    </trim>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tl_job_qrtz_trigger_info
     where id = #{id,jdbcType=INTEGER}
